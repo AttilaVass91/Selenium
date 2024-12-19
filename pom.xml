@@ -21,7 +21,12 @@
       <artifactId>selenium-java</artifactId>
       <version>LATEST</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>LATEST</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
 </project>
