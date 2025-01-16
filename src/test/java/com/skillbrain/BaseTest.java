@@ -1,10 +1,16 @@
 package com.skillbrain;
 
+import com.google.common.io.Files;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+
+import java.io.File;
 
 public class BaseTest {
 
@@ -26,5 +32,16 @@ public class BaseTest {
     @AfterClass
     public void tearDown(){
         driver.quit();
+    }
+
+    @AfterMethod
+    public void takeScreenshot(){
+        TakesScreenshot camera = (TakesScreenshot)driver;
+        File screnshoot = camera.getScreenshotAs(OutputType.FILE);
+        try {
+            Files.move(screnshoot, new File("src/test/resources/screenshots/test.png"));
+        } catch (Exception e2){
+            e2.printStackTrace();
+        }
     }
 }
